@@ -6,7 +6,7 @@ function SettingPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="h-screen w-full max-w-sm bg-white rounded-lg shadow-md flex flex-col">
 
-        {/* Header - Full Width */}
+      
         <div className="w-full bg-gray-100">
           <h2 className="text-lg font-semibold text-gray-800 p-5">
             Account Settings
@@ -17,7 +17,7 @@ function SettingPage() {
        
         <div className="p-8 flex flex-col flex-grow">
 
-          {/* Profile Section */}
+        
           <div className="flex items-center gap-4 mb-4">
             <div className="bg-gray-300 p-1 rounded-full">
               <img
