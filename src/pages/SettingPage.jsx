@@ -21,7 +21,7 @@ function SettingPage() {
           <div className="flex items-center gap-4 mb-4">
             <div className="bg-gray-300 p-1 rounded-full">
               <img
-                src="https://via.placeholder.com/64"
+                src="/logo192.png"
                 alt="Profile"
                 className="w-16 h-16 rounded-full object-cover"
               />
