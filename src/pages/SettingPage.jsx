@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function SettingPage() {
+function SettingPage(props) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="h-screen w-full max-w-sm bg-white rounded-lg shadow-md flex flex-col">
@@ -27,8 +27,8 @@ function SettingPage() {
               />
             </div>
             <div>
-              <h3 className="text-md font-semibold text-gray-900">Marry Doe</h3>
-              <p className="text-sm text-gray-600">Marry@Gmail.Com</p>
+              <h3 className="text-md font-semibold text-gray-900">{props.name}</h3>
+              <p className="text-sm text-gray-600">{props.email}</p>
             </div>
           </div>
 

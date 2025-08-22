@@ -1,7 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,{useState} from "react";
+import { useNavigate } from "react-router-dom";
 
-function Registration() {
+function Registration(props) {
+  const navigate=useNavigate();
+  const [userData, setUserData]=useState({
+    fullName:"",
+    phone:"",
+    email:"",
+    password:"",
+    company:"",
+    agency:""
+  })
+
+  console.log(userData)
+
+  function handleChange(e){
+    const {name,value}=e.target;
+    setUserData((prev)=>{
+      return{
+        ...prev,
+        [name]:value
+      }
+    })
+  }
+    function handleSubmit(e){
+      e.preventDefault();
+      props.add(userData)
+      navigate("/home")
+      console.log("submitted")
+    }
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="h-screen w-full max-w-sm p-8 bg-gray-100 rounded-lg shadow-md flex flex-col">
@@ -12,24 +39,26 @@ function Registration() {
         </h2>
 
       
-        <form className="space-y-4 flex-grow">
+        <form onSubmit={handleSubmit} className="space-y-4 flex-grow" >
           {[
-            { label: "Full Name", name: "fullName" ,placeholder:"Marry Doe" },
-            { label: "Phone number", name: "phone",placeholder:"Marry Doe" },
-            { label: "Email address", name: "email",placeholder:"Marry Doe" },
-            { label: "Password", name: "password", type: "password",placeholder:"Marry Doe" },
-            { label: "Company name", name: "company" ,placeholder:"Marry Doe" },
-          ].map(({ label, name, type,placeholder = "text" }) => (
+            { label: "Full Name", name: "fullName" ,placeholder:"Marry Doe", value:userData.fullName},
+            { label: "Phone number", name: "phone",placeholder:"Marry Doe" , value:userData.phone },
+            { label: "Email address", name: "email",placeholder:"Marry Doe" , value:userData.email},
+            { label: "Password", name: "password", type: "password",placeholder:"Marry Doe", value:userData.password },
+            { label: "Company name", name: "company" ,placeholder:"Marry Doe" , value:userData.company},
+          ].map(({ label, name, placeholder,value,type = "text" }) => (
             <div key={name}>
               <label className="block text-sm font-medium text-[#6A38F8]  mb-1">
                 {label} <span className="text-red-500">*</span>
               </label>
               <input
+                onChange={handleChange}
                 type={type}
                 name={name}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 placeholder={placeholder}
-                required={true}
+                value={value}
+                required
                 
               />
             </div>
@@ -46,6 +75,8 @@ function Registration() {
                     type="radio"
                     name="agency"
                     value={option.toLowerCase()}
+                    checked={userData.agency === option.toLowerCase()}
+                    onChange={handleChange}
                     className="accent-purple-600"
                   />
                   <span className="text-sm text-gray-700">{option}</span>
@@ -53,18 +84,18 @@ function Registration() {
               ))}
             </div>
           </div>
-        </form>
-
-        
-  <div className="w-full">
-  <Link
-    to="/home"
+            <div className="w-full">
+  <button 
     type="submit"
     className="w-[100%] px-6 py-3 bg-[#6A38F8] text-center text-white font-semibold rounded-md hover:bg-purple-700 transition mx-auto block"
   >
     Create Account
-  </Link>
+  </button>
 </div>
+        </form>
+
+        
+
 
       </div>
     </div>
