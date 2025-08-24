@@ -29,7 +29,11 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<LandingPage/>}/>
-      <Route path='/login' element={<Login/>}/>
+      <Route path='/login' element={<Login
+       email={data.email}
+      password={data.password}/>} 
+     
+      />
       <Route path='/register' element={<Registration
       add={addData}
       />}/>
